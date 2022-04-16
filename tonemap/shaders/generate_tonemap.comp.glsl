@@ -22,7 +22,8 @@ layout(binding=2) restrict writeonly buffer OutputData {
 float linear(int bin) {
   int idx = int(gl_LocalInvocationID.x);
   float bin_value = in_data.histogram[idx];
-  return (float(bin)/float(cfg.num_bins)) + bin_value;
+  float linear_interpolation = (float(bin)/float(cfg.num_bins));
+  return linear_interpolation * bin_value;
 }
 
 void main()

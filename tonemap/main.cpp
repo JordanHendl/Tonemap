@@ -156,6 +156,7 @@ auto init_data(std::string_view filename) {
   
   descriptors["apply_tonemap"].bind("cfg", *config);
   descriptors["apply_tonemap"].bind("in_data", *tonecurve);
+  descriptors["apply_tonemap"].bind("radiance_tex", *image);
   descriptors["apply_tonemap"].bind("input_tex", *intensity);
   descriptors["apply_tonemap"].bind("output_tex", *output);
 } 

@@ -16,7 +16,7 @@ void main() {
   vec4 color = imageLoad( input_tex, tex_coords );
   const float intensity  = ( 0.2126 * color.r + 0.7152 * color.g + 0.0722 * color.b );
   
-  color = vec4(intensity, intensity, intensity, 1.0f);
+  color = vec4(vec3(intensity), 1.0f);
   imageStore( output_tex, tex_coords, color );
 }
 

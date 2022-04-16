@@ -45,12 +45,4 @@ void main()
   if(radiance.a > 0 && pix > cfg.min_rad && pix < cfg.max_rad) {
     atomicAdd(histogram.histogram[bin], 1);  
   }
-  
-//  memoryBarrier();
-//  barrier();
-//  
-//  // sum partial histogram into global histogram.
-//  if(local_id < cfg.num_bins) {
-//    atomicAdd(histogram.histogram[local_id], partial_hist[local_id]);
-//  }
 }

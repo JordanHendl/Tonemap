@@ -16,17 +16,20 @@ layout(binding=1) restrict readonly buffer InputData {
   float tonemap[];
 } in_data;
 
-layout( binding = 2, rgba32f ) coherent restrict readonly uniform image2D input_tex;
-layout( binding = 3, rgba32f ) coherent restrict writeonly uniform image2D output_tex;
+layout( binding = 2, rgba32f ) coherent restrict readonly uniform image2D radiance_tex;
+layout( binding = 3, rgba32f ) coherent restrict readonly uniform image2D input_tex;
+layout( binding = 4, rgba32f ) coherent restrict writeonly uniform image2D output_tex;
 
 void main()
 {
   const ivec2 coords = ivec2(gl_GlobalInvocationID.xy);
   const ivec2 dim = imageSize(input_tex);
-  const vec4 radiance = imageLoad( input_tex, coords);
-  
-  float pix = radiance.r;
+  const vec4 lum = imageLoad( input_tex, coords);
+  vec4 color = imageLoad(radiance_tex, coords);
+  float pix = lum.r;
   const int bin = clamp(int((pix - cfg.min_rad)/(cfg.max_rad-cfg.min_rad) * cfg.num_bins), 0, cfg.num_bins-1);
-  pix = radiance.r * in_data.tonemap[bin];
-  imageStore(output_tex, coords, vec4(vec3(pix), 1.0f));
+  pix = lum.r * in_data.tonemap[bin];
+  
+  color = color * (pix / lum.r);
+  imageStore(output_tex, coords, vec4(color.rgb, 1.0f));
 }
