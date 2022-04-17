@@ -1,13 +1,3 @@
-/*=======================================================================
-  Copyright (c) 2022 CAE USA Inc.
-
-  ALL RIGHTS RESERVED                      CAE USA Inc. PROPRIETARY
-
-  This document contains Proprietary Information and, except with written
-  permission of CAE USA Inc., such information shall not be published,
-  or disclosed to others, or used for any other purpose, or duplicated in
-  whole or in part.
-  =======================================================================*/
 #include "image.h"
 #include <stb_image.h>
 #include <stb_image_write.h>

@@ -122,7 +122,7 @@ auto init_data(std::string_view filename) {
   cfg.img_width = image->width();
   cfg.img_height = image->height();
   cfg.min_rad = 0.0f;
-  cfg.max_rad = 1.0f;
+  cfg.max_rad = 0.7f;
   
   cmds.begin();
   cmds.copy(&cfg, *config);
